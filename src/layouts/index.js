@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
 import Content from '../components/Content'
+import Logo from '../components/Logo'
 import Footer from '../components/Footer'
 
 import './index.scss'
@@ -18,6 +19,7 @@ const TemplateWrapper = ({ children }) => (
       ]}
     />
 		<Content>
+			<Logo />
 			{children()}
 		</Content>
 		<Footer />

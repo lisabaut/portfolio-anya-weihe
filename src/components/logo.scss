@@ -1,0 +1,17 @@
+@import '../config/variables';
+
+.logo {
+	margin: 45px auto 0;
+	width: 70%;
+	max-width: 500px;
+
+	svg path {
+		fill: $brand-primary;
+	}
+
+	@include for-tablet-landscape-up {
+		margin: 60px auto 0;
+		max-width: 625px;
+		padding-left: 50px;
+	}
+}

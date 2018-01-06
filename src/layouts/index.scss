@@ -31,5 +31,14 @@ body {
   @include for-phone-up {
     background-position:  0% 0%;
     background-size:  140px auto;
-  }
+	}
+
+	@include for-tablet-landscape-up {
+		background-position: 5% 0%;
+		background-size: 210px auto;
+	}
+
+	@include for-big-desktop-up {
+		background-position: 15% 0%;
+	}
 }
