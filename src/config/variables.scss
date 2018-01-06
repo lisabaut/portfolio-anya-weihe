@@ -8,6 +8,8 @@ $link-decoration: none;
 $link-color-hover: darken($brand-primary, 15%);
 $link-decoration-hover: none;
 
+$container-max-width: 960px;
+
 
 @mixin for-phone-up {
   @media (min-width: 480px) { @content; }
