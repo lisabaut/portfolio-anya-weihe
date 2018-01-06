@@ -9,25 +9,39 @@ import Footer from '../components/Footer'
 
 import './index.scss'
 
-const TemplateWrapper = ({ children }) => (
-  <div className="app">
-    <Helmet
-      title="Gatsby Default Starter"
-      meta={[
-        { name: 'description', content: 'Sample' },
-        { name: 'keywords', content: 'sample, something' },
-      ]}
-    />
+const TemplateWrapper = ({ children, data }) => (
+	<div className="app">
+		<Helmet
+			title={data.site.siteMetadata.title}
+			meta={[
+				{ name: 'description', content: `${data.site.siteMetadata.metaTags.description}` },
+				{ name: 'keywords', content: `${data.site.siteMetadata.metaTags.keywords}` },
+			]}
+		/>
 		<Content>
 			<Logo />
 			{children()}
 		</Content>
 		<Footer />
-  </div>
+	</div>
 )
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
 }
+
+export const query = graphql`
+	query TemplateWrapperQuery {
+		site {
+			siteMetadata {
+				title,
+				metaTags {
+					description
+					keywords
+				}
+			}
+		}
+	}
+`
 
 export default TemplateWrapper
