@@ -1,0 +1,16 @@
+@import '../config/variables';
+
+.footer {
+	flex-shrink: 0;
+	padding: 40px;
+
+	background-image: url('../assets/img/leaves_bottom.png');
+	background-repeat: no-repeat;
+	background-position: 50% 104%;
+	background-size: 350px auto;
+
+	@include for-phone-up {
+		background-position: 50% 100%;
+		background-size: 400px auto;
+	}
+}
