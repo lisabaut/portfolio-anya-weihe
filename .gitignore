@@ -4,7 +4,7 @@ node_modules
 .cache/
 # Build directory
 public/
-.env.*
+.env
 .DS_Store
 yarn-error.log
 npm-debug.log
