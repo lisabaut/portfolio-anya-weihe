@@ -1,16 +1,14 @@
 import React from 'react'
 
-const Page = ({data}) => {
-	return (
-		<div>Hello About Page</div>
-	)
+const Page = ({ data }) => {
+	return <div>Hello About Page</div>
 }
 
 export default Page
 
 export const query = graphql`
-  query AboutQuery($locale: String!) {
-    allDatoCmsAboutPage(filter: {locale: {eq: $locale}}) {
+	query AboutQuery($locale: String!) {
+		allDatoCmsAboutPage(filter: { locale: { eq: $locale } }) {
 			edges {
 				node {
 					seoMetaTags {
@@ -27,5 +25,5 @@ export const query = graphql`
 				}
 			}
 		}
-  }
+	}
 `

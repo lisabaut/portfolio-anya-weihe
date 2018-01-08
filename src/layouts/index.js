@@ -16,13 +16,23 @@ const TemplateWrapper = ({ children, data, location }) => {
 	const currentPath = removePathPrefix(location.pathname, data.site.pathPrefix)
 
 	return (
-		<RedirectIndex locales={data.datoCmsSite.locales} defaultLocale={data.datoCmsSite.locale} currentPath={currentPath}>
+		<RedirectIndex
+			locales={data.datoCmsSite.locales}
+			defaultLocale={data.datoCmsSite.locale}
+			currentPath={currentPath}
+		>
 			<div className="app">
 				<Helmet
 					title={data.site.siteMetadata.title}
 					meta={[
-						{ name: 'description', content: `${data.site.siteMetadata.metaTags.description}` },
-						{ name: 'keywords', content: `${data.site.siteMetadata.metaTags.keywords}` },
+						{
+							name: 'description',
+							content: `${data.site.siteMetadata.metaTags.description}`,
+						},
+						{
+							name: 'keywords',
+							content: `${data.site.siteMetadata.metaTags.keywords}`,
+						},
 					]}
 				/>
 				<Content>
@@ -36,14 +46,14 @@ const TemplateWrapper = ({ children, data, location }) => {
 }
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+	children: PropTypes.func,
 }
 
 export const query = graphql`
 	query TemplateWrapperQuery {
 		site {
 			siteMetadata {
-				title,
+				title
 				metaTags {
 					description
 					keywords

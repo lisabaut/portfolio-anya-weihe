@@ -5,15 +5,14 @@ import Container from './Container'
 
 import './content.scss'
 
-const Content = ({ children }) =>
+const Content = ({ children }) => (
 	<div className="content">
-		<Container>
-			{children}
-		</Container>
-	</div>;
+		<Container>{children}</Container>
+	</div>
+)
 
 Content.propTypes = {
-  children: PropTypes.node.isRequired
+	children: PropTypes.node.isRequired,
 }
 
 export default Content
