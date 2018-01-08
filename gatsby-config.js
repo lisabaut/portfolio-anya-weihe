@@ -14,6 +14,12 @@ module.exports = {
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		{
+			resolve: `gatsby-source-datocms`,
+			options: {
+				apiToken: process.env.DATO_API_TOKEN,
+			},
+		},
+		{
 			resolve: `gatsby-plugin-postcss-sass`,
 			options: {
 				postCssPlugins: [

@@ -8,7 +8,8 @@
     "gatsby": "^1.9.145",
     "gatsby-link": "^1.6.32",
     "gatsby-plugin-postcss-sass": "^1.0.15",
-    "gatsby-plugin-react-helmet": "^1.0.8"
+    "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-source-datocms": "^1.0.16"
   },
   "keywords": [
     "gatsby"
