@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Page = ({data}) => {
-	console.log('data', data)
-
 	return (
 		<div>Hello Home Page</div>
 	)
