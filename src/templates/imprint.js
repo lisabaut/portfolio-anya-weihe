@@ -1,26 +1,13 @@
 import React from 'react'
 
-const Imprint = ({ imprint }) => <div>{imprint.title}</div>
+const Imprint = ({ data }) => <div>{data.datoCmsImprint.title}</div>
 
-const Page = ({ data }) => (
-	<div>
-		{data.allDatoCmsImprint.edges.map(({ node }) => (
-			<Imprint id={node.id} imprint={node} />
-		))}
-	</div>
-)
-
-export default Page
+export default Imprint
 
 export const query = graphql`
 	query ImprintQuery($locale: String!) {
-		allDatoCmsImprint(filter: { locale: { eq: $locale } }) {
-			edges {
-				node {
-					id
-					title
-				}
-			}
+		datoCmsImprint(locale: { eq: $locale }) {
+			title
 		}
 	}
 `
