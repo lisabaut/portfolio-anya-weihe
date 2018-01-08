@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Page = ({ data }) => {
-	return <div>Hello Home Page</div>
-}
+const Home = ({ home }) => <div>{home.title}</div>
+
+const Page = ({ data }) => (
+	<div>
+		{data.allDatoCmsHome.edges.map(({ node }) => (
+			<Home id={node.id} home={node} />
+		))}
+	</div>
+)
 
 export default Page
 
@@ -11,10 +17,8 @@ export const query = graphql`
 		allDatoCmsHome(filter: { locale: { eq: $locale } }) {
 			edges {
 				node {
-					copyright
-					introTextNode {
-						introText
-					}
+					id
+					title
 				}
 			}
 		}
