@@ -9,13 +9,15 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 				`
 					{
 						datoCmsSite {
-							locales
+							locale
 						}
-						allDatoCmsModel(filter:{singleton:{eq:true}}) {
+						allDatoCmsMainMenu {
 							edges {
 								node {
-									name
-									apiKey
+									titel
+									url
+									locale
+									relatedPageId
 								}
 							}
 						}
@@ -26,20 +28,33 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 					reject(result.errors);
 				}
 
-				const singletonModels = result.data.allDatoCmsModel.edges
-				const locales = result.data.datoCmsSite.locales
+				const defaultLocale = result.data.datoCmsSite.locale
+				const menuItems = result.data.allDatoCmsMainMenu.edges
 
-				locales.forEach(locale => {
-					singletonModels.forEach(({ node }) => {
-						const apiKey = node.apiKey;
-						const pageTemplate = path.resolve(`src/templates/${apiKey}.js`);
-						createPage({
-							path: `${locale}/${apiKey}`,
-							component: pageTemplate,
-							context: {
-								locale
-							}
-						})
+				menuItems.forEach(({ node }) => {
+					const locale = node.locale
+					const isDefaultLocale = locale === defaultLocale
+					const pageTemplate = node.relatedPageId
+					const isIndex = pageTemplate === 'home'
+
+					const urlPath = () => {
+						if (isDefaultLocale && isIndex) {
+							return '/'
+						} else if (!isDefaultLocale && isIndex) {
+							return `${locale}/`
+						} else if (isDefaultLocale && !isIndex) {
+							return node.url
+						} else if (!isDefaultLocale && !isIndex) {
+							return `${locale}/${node.url}`
+						}
+					}
+
+					createPage({
+						path: urlPath(),
+						component: path.resolve(`src/templates/${pageTemplate}.js`),
+						context: {
+							locale
+						}
 					})
 				})
 			})

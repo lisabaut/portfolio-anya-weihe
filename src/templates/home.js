@@ -5,7 +5,7 @@ const Home = ({ data }) => <div>{data.datoCmsHome.title}</div>
 export default Home
 
 export const query = graphql`
-	query IndexQuery($locale: String!) {
+	query HomeQuery($locale: String!) {
 		datoCmsHome(locale: { eq: $locale }) {
 			title
 		}
