@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
 
-import RedirectIndex from '../components/RedirectIndex'
 import Content from '../components/Content'
 import Logo from '../components/Logo'
 import Footer from '../components/Footer'
-
-import removePathPrefix from '../utils/locales/removePathPrefixFromLocation'
 
 import './index.scss'
 
@@ -51,7 +48,6 @@ export const query = graphql`
 					keywords
 				}
 			}
-			pathPrefix
 		}
 		datoCmsSite {
 			locales
