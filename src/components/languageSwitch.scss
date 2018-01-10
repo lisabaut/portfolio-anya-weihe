@@ -1,0 +1,30 @@
+@import './config/variables';
+
+.nav-language {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	color: $brand-secondary;
+}
+
+.nav-language__item {
+	display: inline-flex;
+	margin: -1px 5px 0;
+	text-transform: uppercase;
+}
+
+.nav-language__link {
+	color: $brand-secondary;
+	text-decoration: none;
+	transition: border 1s ease-in-out;
+	border-bottom: 2px solid hsla(0,0%,100%,0);
+	padding-bottom: 1px;
+
+	&:hover {
+		border-bottom: 2px solid $brand-secondary;
+	}
+
+	&.active {
+		border-bottom: 2px solid $brand-secondary;
+	}
+}
