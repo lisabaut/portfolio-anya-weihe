@@ -5,11 +5,15 @@ import LanguageSwitch from './LanguageSwitch'
 
 import './header.scss'
 
-const Header = () => (
+const Header = ({ currentPath, allLanguages, defaultLanguage }) => (
 	<div className="header">
 		<Container>
 			<div className="header__inner">
-				<LanguageSwitch />
+				<LanguageSwitch
+					currentPath={currentPath}
+					allLanguages={allLanguages}
+					defaultLanguage={defaultLanguage}
+				/>
 			</div>
 		</Container>
 	</div>

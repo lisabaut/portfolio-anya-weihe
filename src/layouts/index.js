@@ -26,7 +26,11 @@ const TemplateWrapper = ({ children, data, location }) => {
 					},
 				]}
 			/>
-			<Header />
+			<Header
+				currentPath={location.pathname}
+				allLanguages={data.datoCmsSite.locales}
+				defaultLanguage={data.datoCmsSite.locale}
+			/>
 			<Content>
 				<Logo isHomePage={true} />
 				{children()}
@@ -54,6 +58,16 @@ export const query = graphql`
 		datoCmsSite {
 			locales
 			locale
+		}
+		allSitePage {
+			edges {
+				node {
+					path
+					context {
+						locale
+					}
+				}
+			}
 		}
 	}
 `
