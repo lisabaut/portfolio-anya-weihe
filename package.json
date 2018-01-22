@@ -22,10 +22,12 @@
     "build:prod": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --config=jest.config.json"
   },
   "devDependencies": {
     "autoprefixer": "^7.2.4",
+    "babel-jest": "^22.0.6",
+    "jest": "^22.0.6",
     "prettier": "^1.9.2"
   }
 }
