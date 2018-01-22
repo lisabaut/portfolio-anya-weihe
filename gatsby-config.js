@@ -29,6 +29,7 @@ module.exports = {
 				],
 				precision: 8
 			}
-		}
+		},
+		`gatsby-transformer-remark`
 	],
 }

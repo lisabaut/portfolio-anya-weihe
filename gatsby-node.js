@@ -36,6 +36,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 					const isDefaultLocale = locale === defaultLocale
 					const pageTemplate = node.relatedPageId
 					const isIndex = pageTemplate === 'home'
+					const layoutTemplate = isIndex ? 'index' : 'sub-page'
 
 					const urlPath = () => {
 						if (isDefaultLocale && isIndex) {
@@ -52,6 +53,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 					createPage({
 						path: urlPath(),
 						component: path.resolve(`src/templates/${pageTemplate}.js`),
+						layout: layoutTemplate,
 						context: {
 							locale
 						}

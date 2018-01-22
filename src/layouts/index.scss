@@ -1,4 +1,5 @@
 @import './config/variables';
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700');
 
 html {
   box-sizing: border-box;
@@ -13,9 +14,18 @@ html {
 	box-sizing: inherit;
 }
 
+p,
+h1,
+h2,
+h3 {
+	margin: 0;
+}
+
 body {
   height: 100vh;
 	margin: 0;
+	font-family: 'Libre Baskerville', serif;
+	color: $body-color;
 }
 
 .app {
@@ -40,5 +50,20 @@ body {
 
 	@include for-big-desktop-up {
 		background-position: 15% 0%;
+	}
+}
+
+.main {
+	background: white;
+	padding: 20px;
+
+	h2 {
+		margin-bottom: 10px;
+	}
+
+	p {
+		line-height: 25px;
+    white-space: pre-wrap;
+    margin-bottom: 15px;
 	}
 }

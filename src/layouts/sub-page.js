@@ -10,7 +10,10 @@ import Footer from '../components/Footer'
 
 import './index.scss'
 
-const TemplateWrapper = ({ children, data, location }) => {
+const SubPageTemplate = ({ children, data, location }) => {
+	console.log('SUBPAGE')
+	console.log('location', location)
+	console.log('data', data)
 	return (
 		<div className="app">
 			<Helmet
@@ -26,22 +29,26 @@ const TemplateWrapper = ({ children, data, location }) => {
 					},
 				]}
 			/>
-			<Header />
+			<Header
+				currentPath={location.pathname}
+				allLanguages={data.datoCmsSite.locales}
+				defaultLanguage={data.datoCmsSite.locale}
+			/>
 			<Content>
-				<Logo isHomePage={true} />
-				{children()}
+				<Logo isHomePage={false} />
+				<main className="main">{children()}</main>
 			</Content>
 			<Footer />
 		</div>
 	)
 }
 
-TemplateWrapper.propTypes = {
+SubPageTemplate.propTypes = {
 	children: PropTypes.func,
 }
 
 export const query = graphql`
-	query TemplateWrapperQuery {
+	query SubPageTemplateQuery {
 		site {
 			siteMetadata {
 				title
@@ -55,7 +62,17 @@ export const query = graphql`
 			locales
 			locale
 		}
+		allSitePage {
+			edges {
+				node {
+					path
+					context {
+						locale
+					}
+				}
+			}
+		}
 	}
 `
 
-export default TemplateWrapper
+export default SubPageTemplate
