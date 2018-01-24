@@ -10,7 +10,10 @@ import Footer from '../components/Footer'
 
 import './index.scss'
 
-const TemplateWrapper = ({ children, data, location }) => {
+const TemplateWrapper = ({ children, data, location, pathContext }) => {
+	const currentPage = data.allSitePage.edges.find(edge => edge.node.path === location.pathname)
+	const currentPageLanguage = currentPage.node.context.locale
+	const isIndexPage = currentPage.node.context.isIndexPage
 	return (
 		<div className="app">
 			<Helmet
@@ -32,8 +35,8 @@ const TemplateWrapper = ({ children, data, location }) => {
 				defaultLanguage={data.datoCmsSite.locale}
 			/>
 			<Content>
-				<Logo isHomePage={true} />
-				{children()}
+				<Logo isHomePage={isIndexPage} />
+				<main className={isIndexPage ? '' : 'main'}>{children()}</main>
 			</Content>
 			<Footer />
 		</div>
@@ -64,7 +67,8 @@ export const query = graphql`
 				node {
 					path
 					context {
-						locale
+						locale,
+						isIndexPage
 					}
 				}
 			}
