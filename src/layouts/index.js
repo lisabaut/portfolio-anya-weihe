@@ -11,12 +11,12 @@ import Footer from '../components/Footer'
 import './index.scss'
 
 const TemplateWrapper = ({ children, data, location }) => {
+	const defaultLanguage = data.datoCmsSite.locale
 	const currentPage = data.allSitePage.edges.find(
 		edge => edge.node.path === location.pathname
 	)
-	const currentPageLanguage = currentPage.node.context.locale
+	const currentPageLanguage = currentPage.node.context.locale || defaultLanguage
 	const isIndexPage = currentPage.node.context.isIndexPage
-	const defaultLanguage = data.datoCmsSite.locale
 	const footerContent = data.allDatoCmsFooter.edges.find(
 		edge => edge.node.locale === currentPageLanguage
 	)
