@@ -3,6 +3,7 @@
 .footer {
 	flex-shrink: 0;
 	padding: 40px;
+	padding-bottom: 80px;
 
 	background-image: url('../assets/img/leaves_bottom.png');
 	background-repeat: no-repeat;
@@ -12,5 +13,36 @@
 	@include for-phone-up {
 		background-position: 50% 100%;
 		background-size: 400px auto;
+	}
+
+	&__content {
+		margin: 0 auto;
+		max-width: $container-max-width;
+		font-size: 12px;
+		text-align: center;
+		color: #656464;
+
+		a {
+			margin: 0 10px;
+			color: $link-color;
+			text-decoration: none;
+			transition: border 1s ease-in-out;
+			border-bottom: 2px solid hsla(0,0%,100%,0);
+			padding-bottom: 1px;
+
+			&:hover {
+				border-bottom: 2px solid $link-color-hover;
+			}
+		}
+
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			display: inline;
+		}
 	}
 }

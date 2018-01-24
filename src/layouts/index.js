@@ -10,10 +10,14 @@ import Footer from '../components/Footer'
 
 import './index.scss'
 
-const TemplateWrapper = ({ children, data, location, pathContext }) => {
-	const currentPage = data.allSitePage.edges.find(edge => edge.node.path === location.pathname)
+const TemplateWrapper = ({ children, data, location }) => {
+	const currentPage = data.allSitePage.edges.find(
+		edge => edge.node.path === location.pathname
+	)
 	const currentPageLanguage = currentPage.node.context.locale
 	const isIndexPage = currentPage.node.context.isIndexPage
+	const footerContent = data.allDatoCmsFooter.edges.find(edge => edge.node.locale === currentPageLanguage)
+
 	return (
 		<div className="app">
 			<Helmet
@@ -38,7 +42,7 @@ const TemplateWrapper = ({ children, data, location, pathContext }) => {
 				<Logo isHomePage={isIndexPage} />
 				<main className={isIndexPage ? '' : 'main'}>{children()}</main>
 			</Content>
-			<Footer />
+			<Footer footerContent={footerContent.node.footerContent} />
 		</div>
 	)
 }
@@ -70,6 +74,14 @@ export const query = graphql`
 						locale,
 						isIndexPage
 					}
+				}
+			}
+		}
+		allDatoCmsFooter {
+			edges {
+				node {
+					footerContent
+					locale
 				}
 			}
 		}
