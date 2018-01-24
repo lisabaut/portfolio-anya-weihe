@@ -16,7 +16,10 @@ const TemplateWrapper = ({ children, data, location }) => {
 	)
 	const currentPageLanguage = currentPage.node.context.locale
 	const isIndexPage = currentPage.node.context.isIndexPage
-	const footerContent = data.allDatoCmsFooter.edges.find(edge => edge.node.locale === currentPageLanguage)
+	const defaultLanguage = data.datoCmsSite.locale
+	const footerContent = data.allDatoCmsFooter.edges.find(
+		edge => edge.node.locale === currentPageLanguage
+	)
 
 	return (
 		<div className="app">
@@ -36,10 +39,14 @@ const TemplateWrapper = ({ children, data, location }) => {
 			<Header
 				currentPath={location.pathname}
 				allLanguages={data.datoCmsSite.locales}
-				defaultLanguage={data.datoCmsSite.locale}
+				defaultLanguage={defaultLanguage}
 			/>
 			<Content>
-				<Logo isHomePage={isIndexPage} />
+				<Logo
+					isHomePage={isIndexPage}
+					currentPageLanguage={currentPageLanguage}
+					defaultLanguage={defaultLanguage}
+				/>
 				<main className={isIndexPage ? '' : 'main'}>{children()}</main>
 			</Content>
 			<Footer footerContent={footerContent.node.footerContent} />
@@ -71,7 +78,7 @@ export const query = graphql`
 				node {
 					path
 					context {
-						locale,
+						locale
 						isIndexPage
 					}
 				}
