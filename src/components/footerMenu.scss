@@ -1,0 +1,26 @@
+@import './config/variables';
+
+.footer-menu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+
+	&__item {
+		display: inline-block;
+		margin-bottom: 5px;
+	}
+
+	a {
+		margin: 0 10px;
+		color: $link-color;
+		text-decoration: none;
+		transition: border 0.5s ease-in-out;
+		border-bottom: 1px solid $link-color-hover;
+		padding-bottom: 1px;
+
+		&:hover {
+			border-bottom: 1px solid hsla(0,0%,100%,0);
+		}
+	}
+}

@@ -8,37 +8,47 @@ import Content from '../components/Content'
 import Logo from '../components/Logo'
 import Footer from '../components/Footer'
 
+import { getPageByPath, getPagesByLang } from '../selects/pageSelects'
+
 import './index.scss'
 
-const TemplateWrapper = ({ children, data, location }) => {
-	const defaultLanguage = data.datoCmsSite.locale
-	const currentPage = data.allSitePage.edges.find(
-		edge => edge.node.path === location.pathname
-	)
-	const currentPageLanguage = currentPage.node.context.locale || defaultLanguage
-	const isIndexPage = currentPage.node.context.isIndexPage
-	const footerContent = data.allDatoCmsFooter.edges.find(
+const TemplateWrapper = ({
+	children,
+	data: { site, allSitePage, datoCmsSite, allDatoCmsFooter },
+	location,
+}) => {
+	const allLanguages = datoCmsSite.locales
+	const allPages = allSitePage.edges
+	const defaultLanguage = datoCmsSite.locale
+
+	const currentPath = location.pathname
+	const currentPage = getPageByPath(currentPath, allPages)
+	const currentPageLanguage =
+		(currentPage && currentPage.node.context.locale) || defaultLanguage
+	const isIndexPage = currentPage && currentPage.node.context.isIndexPage
+
+	const footerContentByLanguage = allDatoCmsFooter.edges.find(
 		edge => edge.node.locale === currentPageLanguage
 	)
 
 	return (
 		<div className="app">
 			<Helmet
-				title={data.site.siteMetadata.title}
+				title={site.siteMetadata.title}
 				meta={[
 					{
 						name: 'description',
-						content: `${data.site.siteMetadata.metaTags.description}`,
+						content: `${site.siteMetadata.metaTags.description}`,
 					},
 					{
 						name: 'keywords',
-						content: `${data.site.siteMetadata.metaTags.keywords}`,
+						content: `${site.siteMetadata.metaTags.keywords}`,
 					},
 				]}
 			/>
 			<Header
-				currentPath={location.pathname}
-				allLanguages={data.datoCmsSite.locales}
+				currentPath={currentPath}
+				allLanguages={allLanguages}
 				defaultLanguage={defaultLanguage}
 			/>
 			<Content>
@@ -49,7 +59,10 @@ const TemplateWrapper = ({ children, data, location }) => {
 				/>
 				<main className={isIndexPage ? '' : 'main'}>{children()}</main>
 			</Content>
-			<Footer footerContent={footerContent.node.footerContent} />
+			<Footer
+				pages={getPagesByLang(currentPageLanguage, allPages)}
+				footerContent={footerContentByLanguage.node}
+			/>
 		</div>
 	)
 }
@@ -69,10 +82,6 @@ export const query = graphql`
 				}
 			}
 		}
-		datoCmsSite {
-			locales
-			locale
-		}
 		allSitePage {
 			edges {
 				node {
@@ -80,15 +89,28 @@ export const query = graphql`
 					context {
 						locale
 						isIndexPage
+						relatedPageId
 					}
 				}
 			}
 		}
+		datoCmsSite {
+			locales
+			locale
+		}
 		allDatoCmsFooter {
 			edges {
 				node {
-					footerContent
 					locale
+					footerSubline
+					footerLinks {
+						title
+						locale
+						externalLink
+						mainMenuRelation {
+							relatedPageId
+						}
+					}
 				}
 			}
 		}

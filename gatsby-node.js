@@ -54,7 +54,8 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
 						component: path.resolve(`src/templates/${pageTemplate}.js`),
 						context: {
 							locale,
-							isIndexPage: isIndex
+							isIndexPage: isIndex,
+							relatedPageId: pageTemplate
 						}
 					})
 				})
