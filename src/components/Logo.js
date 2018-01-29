@@ -7,7 +7,7 @@ import { convertToLanguageUrlSlug } from '../selects/urlSelects'
 import './logo.scss'
 
 const Logo = ({ isHomePage, currentPageLanguage, defaultLanguage }) => {
-	const className = isHomePage ? 'logo logo--home' : 'logo'
+	const className = isHomePage ? 'logo logo--home' : 'logo logo--subpage'
 	const linkTo =
 		currentPageLanguage === defaultLanguage
 			? '/'
