@@ -5,14 +5,15 @@
 	padding-top: 30px;
 	padding-bottom: 80px;
 
-	background-image: url('../assets/img/leaves_bottom.png');
+	background-image: url('../assets/img/leaves_notes_text_bottom.png');
 	background-repeat: no-repeat;
 	background-position: 50% 104%;
 	background-size: 350px auto;
 
 	@include for-phone-up {
 		background-position: 50% 100%;
-		background-size: 400px auto;
+		background-size: 550px auto;
+		padding-bottom: 110px;
 	}
 
 	&__content {

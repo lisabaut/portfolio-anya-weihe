@@ -10,26 +10,23 @@
 
 	&--home {
 		margin-top: 25px;
-		width: 80%;
+		width: 70%;
 
 		@include for-tablet-portrait-up {
-			margin: 60px auto;
-			width: 60%;
+			margin: 60px auto 40px;
+			width: 65%;
 		}
 		@include for-tablet-landscape-up {
 			width: 50%;
-		}
-		@include for-big-desktop-up {
-			margin-bottom: 40px;
 		}
 	}
 
 	&--subpage {
 		margin-top: 10px;
-		width: 50%;
+		width: 55%;
 
 		@include for-phone-up {
-			width: 25%;
+			width: 35%;
 		}
 	}
 }
